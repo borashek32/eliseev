@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+    database:
+        image: 'mysql:8.0'
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: marketplace
+        ports:
+            - '3306'
+
+    web:
+        image: nginx
+        volumes:
+            - ./templates:/etc/nginx/templates
+        ports:
+            - "8000:80"
