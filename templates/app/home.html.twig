@@ -4,7 +4,15 @@
 
 {% block breadcrumbs %}
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active">Home</li>
+
+
+        {% if is_granted('ROLE_ADMI') %}
+            <li class="breadcrumb-item active">Hello, admin<br>{{ app.user.email }}</li>
+        {% elseif is_granted('ROLE_USER') %}
+            <li class="breadcrumb-item active">Hello, user<br>{{ app.user.email }}</li>
+        {% else %}
+            <li class="breadcrumb-item active">Hello</li>
+        {% endif %}
     </ol>
 {% endblock %}
 
